@@ -114,5 +114,54 @@ function documentLoader() {
     
     }
   }
+
+
+     function toggleDeletions(event) {
+      var deletions = document.getElementsByTagName('del');
+      var deletionsArray = Array.from(deletions);
+
+    deletionsArray.forEach(function(deletion) {                           // button to hide/show deletions
+      if (deletion.style.display === 'none') {
+        deletion.style.display = ''
+      } else {
+        deletion.style.display = 'none';
+      }
+    });
+  }
+
+
+
+    let isReadingMode = true;
+
+    function toggleReadView(event) {
+      var deletions = document.getElementsByTagName('del');
+      var deletionsArray = Array.from(deletions);
+      var additions = document.getElementsByClassName('supraAdd');
+      
+      deletionsArray.forEach(function(deletion) {
+        deletion.style.display = isReadingMode ? 'none' : '';             // button to show reader view and make all additions inline
+  });                                                                     // this buttons also hides all the ^ (caret) sublinear metamark while 
+                                                                          // retaining other sublinear metamarks like the L on page 23r
+      Array.from(additions).forEach(function(addition) {
+    if (isReadingMode) {
+      addition.style.verticalAlign = 'baseline'; 
+      addition.style.fontSize = 'inherit';
+    } else {
+      addition.style.verticalAlign = 'super';
+      addition.style.fontSize = '';                                        
+    }                                                                      
+  });                                                                      
+    
+    var subAdds = document.querySelectorAll('.subAdd');
+    subAdds.forEach(function (subAdd) {                                     
+    var text = subAdd.textContent || subAdd.innerText;
+    if (text.includes('^')) {                                             // code to hide the ^ metamark
+      subAdd.style.display = isReadingMode ? 'none' : 'inline';
+    }
+  });
+
+  isReadingMode = !isReadingMode;
+}
+
 // write another function that will toggle the display of the deletions by clicking on a button
 // EXTRA: write a function that will display the text as a reading text by clicking on a button or another dropdown list, meaning that all the deletions are removed and that the additions are shown inline (not in superscript)

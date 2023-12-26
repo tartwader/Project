@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8".>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 
     <script src="https://unpkg.com/mirador@latest/dist/mirador.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"/>
 
     <title>Frankenstein Edition</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet"/>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,7 +22,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <a class="nav-link" href="index.html">Home</a>
+          <li><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Pages
@@ -42,6 +42,10 @@
           </li>
         </ul>
       </div>
+      <div class="page-navigation">
+        <a href="21r.html" class="prevPage">&#8592; Previous Page</a>
+        <a href="22r.html" class="nextPage">Next Page &#8594;</a>
+      </div>
     </nav>
     <div class="container-fluid">
       <h1>Frankenstein Volume I Draft in Chapter Sequence</h1>
@@ -54,7 +58,10 @@
           <option value="Mary">Mary Shelley's Hand Highlighted</option>
           <option value="Percy">Percy Shelley's Hand Highlighted</option>
         </select>
-      </div>
+        <div class="toggleDel">
+          <button type="button" id="toggleDeletionsButton" onClick="toggleDeletions(event)" class="prevPage">Show/Hide Deletions</button>
+          <button onclick="toggleReadView(event)" class="prevPage">Reader View</button>
+        </div>
       <div class="row">
         <div class="col-5">   
             <div id="my-mirador"></div>

@@ -1,8 +1,146 @@
 body {
-
+   
 }
 .starter-template {
   padding: 40px 15px;
+  text-align: center;
+}
+    
+h1 {                                       /* for index page "Mary Wollstonecraft Shelley- Frankenstein" */
+    font-family: "Perpetua", serif;
+    text-align: center;
+    background-color: 	#78866b;
+    font-size: 70px;
+    color: #F1F8E9;
+}
+
+h4 {                                              /* for metadata "About the manuscript page:" */
+    font-size: 31px;
+    font-family: "perpetua", serif;
+}
+
+.intro{                 
+    position: relative;                           /*  to centralise first info paragraph on index page */
+    text-align: center; 
+    font-family: "Perpetua";
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #78866b;
+}
+    
+.image-container {                                /*  main image container */
+    position: relative; 
+    text-align: center;
+    overflow: hidden;
+}
+    
+.text-container-left {                             /*  text to the left of the image */
+    position: absolute;
+    top: 80px;  
+    left: 0;
+    width: 300px;
+    padding: 2px;
+    text-align: center; 
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.text-container-right {                              /*  text to the right of the image */
+  position: absolute;       
+  top: 80px;
+  right: 0; 
+  width: 300px;
+  padding: 2px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.page-list {                                         /*  to format index page, page list div */
+   margin-top: 40px;
+   padding-left: 20px;
+}
+
+#flowers {                                           /*  to get rid of default bullets */
+  list-style: none;
+  padding-left: 5px;    
+}
+
+#flowers li::before {
+  content: "\2740";                                 /* formatting the bullets to make them different from default dots */
+  margin-right: 8px; 
+  color: #5e734e;
+}
+
+#flowers a {
+  color: #5e734e; 
+  font-size: 18px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;         /* to evenly space the three links */
+}
+
+.links a {
+  padding: 8px 12px;
+}
+    
+.license {
+    margin-top: 10px;
+}
+
+.signOff {
+    text-align: center; 
+    margin-top: 85px;
+}
+
+.page-navigation {                       /* for div containing prev and next page  */
+}
+
+.prevPage,                              /*  styling for prev page next page button */
+.nextPage {
+  padding: 5px;
+  margin: 0 10px;
+  border: 2px solid #ccc;
+  color: grey;
+  border-radius: 4px;
+}
+
+#folio {
+    margin-left: 25px;
+    margin-bottom: 15px;
+    font-family: "Perpetua";
+    font-size: 25px;
+}
+
+.stat {                                  /* to create a block for the labels of the statistics, block will then help align the statistic values */
+    display: inline-block;
+    width: 300px;
+    font-family: "Perpetua";
+    font-size: 19px;
+}
+
+.statValue {                             /* for values of page statistics to be aligned vertically */
+    display: inline-block;
+    text-align: right;
+    font-weight: bold;
+}
+
+.toggleDel {
+  margin-left: 360px;                   /*  for the show/hide deletions + reader view buttons on all html pages */
+  font-family: "Perpetua", serif;
+}
+
+.pageNumber {                            /*  for the circle around page numbers  */
+  position: relative;
+  float: right;
+  border: 2px solid black;
+  border-radius: 50%; 
+  min-width: 30px;
+  min-height: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.chapterTitle {                          /*  for the centering of "Chapter 7th" page 21r  */
   text-align: center;
 }
 
@@ -32,4 +170,43 @@ p {
     display: none !important;
 }
 
+.crossedOut {                                           /*  for the strikethrough for crossed out texts  */
+  text-decoration: line-through;
+}
 
+.transcription {                                        /* to change font of the main story */
+    font-family: "Arial";
+}
+
+body:not(#index-page) .col-7 {
+    font-family: "Arial";                               /* to also change font of the text in left margin */
+}
+
+
+.supraAdd {
+    vertical-align: super;
+    font-weight: bold; 
+    font-size: small;
+    font-style: italic; 
+}
+
+.subAdd {
+    vertical-align: sub;
+    font-weight: bold;
+    font-style: italic; 
+}
+
+.overAdd {
+    font-weight: bold; 
+    font-style: italic; 
+}
+
+.inlineAdd {
+    font-weight: bold; 
+    font-style: italic; 
+}
+
+.indentline{                                          /*  for the individual indented lines on page 23r */
+    text-indent: 45px;
+    line-height: 0.2;
+}

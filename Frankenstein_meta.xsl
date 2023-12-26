@@ -12,21 +12,47 @@
                      <div class="row">
                          <div class="col">
                              <h4>About the manuscript page:</h4>
-                             <xsl:value-of select="//tei:sourceDesc"/>
-                             <xsl:value-of select="//tei:licence"/> <!-- You can change the way the metadata is visualised as well-->
+                             <span style = 'font-family: "Perpetua"; font-size: 20px;'>
+                             <xsl:value-of select="//tei:sourceDesc"/><br/>
+                             <xsl:value-of select="//tei:licence"/>
+                             </span><!-- You can change the way the metadata is visualised as well-->
                          </div>
                          <div class="col">
-                            <ul> 
-                                <li>Total number of modifications: 
-                                    <xsl:value-of select="count(//tei:del|//tei:add)" /> <!-- Counts all the add and del elements, and puts it in a list item -->
+                            <ul id="flowers"><h4>Page Information:</h4>
+                                <li><span class="stat">Number of modifications:</span>
+                                    <span class="statValue"><xsl:value-of select="count(//tei:del|//tei:add)" /></span> 
                                 </li>
-                                <li>Number of additions: 
-                                    <!-- count the additions only -->
+                                <li><span class="stat">Number of modifications (by Percy B. S.):</span>
+                                    <span class="statValue"><xsl:value-of select="count(//tei:del[@hand='#PBS'] | //tei:add[@hand='#PBS'])" /></span>                                  
                                 </li>
-                                <!-- add other list items in which you count things, such as the modifications made by Percy -->
+                                <li><span class="stat">Number of additions:</span>
+                                    <span class="statValue"><xsl:value-of select="count(//tei:add)" /></span>  
+                                </li>
+                                <li><span class="stat">Number of additions (by Percy B. S.):</span>
+                                    <span class="statValue"><xsl:value-of select="count(//tei:add[@hand='#PBS'])" /></span> 
+                                </li>
+                                <li><span class="stat">Number of deletions:</span>
+                                    <span class="statValue"><xsl:value-of select="count(//tei:del)" /></span>
+                                </li>
+                                <li><span class="stat">Number of deletions (by Percy B. S.):</span> 
+                                    <span class="statValue"><xsl:value-of select="count(//tei:del[@hand='#PBS'])" /></span>
+                                </li>
                             </ul>
                         </div>
                      </div>
+                   <style>
+              <![CDATA[
+                  body::before {
+                  content: "";
+                  background-image: url("https://w0.peakpx.com/wallpaper/277/779/HD-wallpaper-sage-green-leaves-trees-branches-sage-green.jpg");
+                  opacity: 0.1;
+                  position: fixed;
+                  width: 100%;
+                  height: 100%;
+                  z-index: -1; 
+                }
+              ]]>
+        </style>
         <hr/>
     </xsl:template>
     
