@@ -47,8 +47,8 @@ var mirador = Mirador.viewer({
 function documentLoader() {
 
     Promise.all([
-      fetch(folio_xml).then(response => response.text()),
-      fetch("Frankenstein_text.xsl").then(response => response.text())
+      fetch("../XML/"+folio_xml).then(response => response.text()),
+      fetch("../XSL/Frankenstein_text.xsl").then(response => response.text())
     ])
     .then(function ([xmlString, xslString]) {
       var parser = new DOMParser();
@@ -72,8 +72,8 @@ function documentLoader() {
   function statsLoader() {
 
     Promise.all([
-      fetch(folio_xml).then(response => response.text()),
-      fetch("Frankenstein_meta.xsl").then(response => response.text())
+      fetch("../XML/"+folio_xml).then(response => response.text()),                 // edited to fetch file from the correct directory
+      fetch("../XSL/Frankenstein_meta.xsl").then(response => response.text())
     ])
     .then(function ([xmlString, xslString]) {
       var parser = new DOMParser();
@@ -93,34 +93,48 @@ function documentLoader() {
     });
   }
 
-  // Initial document load
+  // To highlight Mary's hand, Percy's hand or show both hands
+
   documentLoader();
   statsLoader();
-  // Event listener for sel1 change
   function selectHand(event) {
-  var visible_mary = document.getElementsByClassName('#MWS');
-  var visible_percy = document.getElementsByClassName('#PBS');
-  // Convert the HTMLCollection to an array for forEach compatibility
-  var MaryArray = Array.from(visible_mary);
-  var PercyArray = Array.from(visible_percy);
-    if (event.target.value == 'both') {
-    //write an forEach() method that shows all the text written and modified by both hand (in black?). The forEach() method of Array instances executes a provided function once for each array element.
-     
-    } else if (event.target.value == 'Mary') {
-     //write an forEach() method that shows all the text written and modified by Mary in a different color (or highlight it) and the text by Percy in black. 
-     
-    } else {
-     //write an forEach() method that shows all the text written and modified by Percy in a different color (or highlight it) and the text by Mary in black.
-    
-    }
-  }
+    var textsByMary = document.querySelectorAll('.\\#MWS');
+    var textsByPercy = document.querySelectorAll('.\\#PBS');
 
+    
+    [textsByMary, textsByPercy].forEach(group => {
+        group.forEach(el => el.style.backgroundColor = '');                         
+    }); 
+ 
+    if (event.target.value === 'both') {                                             // no changes if "both" hands selected 
+                                                                            
+    } else if (event.target.value === 'Mary') {
+        textsByMary.forEach(el => {
+            if (el.classList.contains('#PBS')) {
+                el.style.backgroundColor = '';                                       // elements with class #PBS have default bg
+            } else {
+                el.style.backgroundColor = 'lightblue';                              // elements with class #MWS get highlighted in light blue 
+            }
+        });
+    } else if (event.target.value === 'Percy') {
+        textsByPercy.forEach(el => el.style.backgroundColor = 'lightblue');          // elements with class #PBS get highlighted in light blue
+    }
+}
+
+
+document.getElementById('sel-hand').addEventListener('change', selectHand);
+
+
+
+
+
+     // To show/hide all deletions
 
      function toggleDeletions(event) {
       var deletions = document.getElementsByTagName('del');
       var deletionsArray = Array.from(deletions);
 
-    deletionsArray.forEach(function(deletion) {                           // button to hide/show deletions
+    deletionsArray.forEach(function(deletion) {                                      // button to hide/show deletions
       if (deletion.style.display === 'none') {
         deletion.style.display = ''
       } else {
@@ -131,6 +145,10 @@ function documentLoader() {
 
 
 
+
+
+   // To toggle between reading view, when reading view is selected, all additions/deletions including metamark ^ are hidden
+
     let isReadingMode = true;
 
     function toggleReadView(event) {
@@ -139,9 +157,9 @@ function documentLoader() {
       var additions = document.getElementsByClassName('supraAdd');
       
       deletionsArray.forEach(function(deletion) {
-        deletion.style.display = isReadingMode ? 'none' : '';             // button to show reader view and make all additions inline
-  });                                                                     // this buttons also hides all the ^ (caret) sublinear metamark while 
-                                                                          // retaining other sublinear metamarks like the L on page 23r
+        deletion.style.display = isReadingMode ? 'none' : '';                         // button to show reader view and make all additions inline
+  });                                                                                 // this buttons also hides all the ^ (caret) sublinear metamark while 
+                                                                                      // retaining other sublinear metamarks like the L on page 23r
       Array.from(additions).forEach(function(addition) {
     if (isReadingMode) {
       addition.style.verticalAlign = 'baseline'; 
@@ -155,7 +173,7 @@ function documentLoader() {
     var subAdds = document.querySelectorAll('.subAdd');
     subAdds.forEach(function (subAdd) {                                     
     var text = subAdd.textContent || subAdd.innerText;
-    if (text.includes('^')) {                                             // code to hide the ^ metamark
+    if (text.includes('^')) {                                                          // code to hide the ^ metamark
       subAdd.style.display = isReadingMode ? 'none' : 'inline';
     }
   });
@@ -163,5 +181,4 @@ function documentLoader() {
   isReadingMode = !isReadingMode;
 }
 
-// write another function that will toggle the display of the deletions by clicking on a button
-// EXTRA: write a function that will display the text as a reading text by clicking on a button or another dropdown list, meaning that all the deletions are removed and that the additions are shown inline (not in superscript)
+

@@ -46,14 +46,10 @@
         </div>
         <div class="col-9">
             <div class="transcription">
-                <xsl:apply-templates select="//tei:div"/>
+                <xsl:apply-templates/>
             </div>
         </div>
         </div> 
-    </xsl:template>
- 
-    <xsl:template match="tei:div">
-        <div class="#MWS"><xsl:apply-templates/></div>
     </xsl:template>
     
     <xsl:template match="tei:p">
@@ -102,6 +98,52 @@
         </span>
     </xsl:template>
     
+    <xsl:template match="add">
+        <add>
+            <xsl:attribute name="class">
+                <xsl:value-of select="@hand"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </add>
+    </xsl:template>
+    
+    <xsl:template match="tei:add[@place='supralinear']">
+        <span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('supraAdd ', @hand)"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    
+    
+    <xsl:template match="tei:add[@place='infralinear']">
+        <span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('subAdd ', @hand)"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    
+    <xsl:template match="tei:add[@place='inline']">
+        <span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('inlineAdd ', @hand)"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    
+    <xsl:template match="tei:add[@place='overwritten']">
+        <span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('overAdd ', @hand)"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    
     <xsl:template match="tei:add//tei:lb">
         <br/>
     </xsl:template>
@@ -133,18 +175,7 @@
     <xsl:template match="tei:lb">
         <br/>
     </xsl:template>
-    
-    <xsl:template match="tei:del[@type = 'crossedOut']">
-        <del class="crossedOut">
-            <xsl:apply-templates/>
-        </del>
-    </xsl:template>
-    
-    <xsl:template match="tei:del[@type = 'overwritten']">
-        <del class="crossedOut">
-            <xsl:apply-templates/>
-        </del>
-    </xsl:template>
+
     
     <!-- add additional templates below, for example to transform the tei:lb in <br/> empty elements, tei:hi[@rend = 'sup'] in <sup> elements, the underlined text, additions with the attribute "overwritten" etc. -->
 

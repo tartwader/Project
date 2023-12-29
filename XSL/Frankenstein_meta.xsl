@@ -45,7 +45,7 @@
                   body::before {
                   content: "";
                   background-image: url("https://w0.peakpx.com/wallpaper/277/779/HD-wallpaper-sage-green-leaves-trees-branches-sage-green.jpg");
-                  opacity: 0.1;
+                  opacity: 0.17;
                   position: fixed;
                   width: 100%;
                   height: 100%;
