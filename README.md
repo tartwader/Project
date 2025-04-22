@@ -1,4 +1,4 @@
-# Project
+# Mini Digital Edition of Mary Shelley's Frankenstein
 
 The goal of this project was to make a mini digital edition of Mary Shelley's Frankenstein manuscript which also contains edits made by her husband, Percy B. Shelley. The manuscript was digitized along with the edits, and an attempt was made to make the digital edition interactive such that the users can view various edits, hide them, see who made the edit; Mary Shelley or Percy B. Shelley and also read the manuscript without viewing the edits.
 
